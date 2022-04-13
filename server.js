@@ -20,6 +20,7 @@ dotenv.config({
 connectDB();
 
 //Route files
+const campgrounds = require("./routes/campgrounds");
 
 const app = express();
 
@@ -52,6 +53,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Use routes
+app.use("/api/v1/campgrounds", campgrounds);
 
 const swaggerOptions = {
   swaggerDefinition: {
