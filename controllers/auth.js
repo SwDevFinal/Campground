@@ -26,7 +26,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 /*
  *  @desc   Register user
- *  @route  POST /register
+ *  @route  POST /auth/register
  *  @access Public
  */
 exports.register = async (req, res, next) => {
@@ -51,7 +51,7 @@ exports.register = async (req, res, next) => {
 
 /*
  *  @desc   Login user
- *  @route  POST /login
+ *  @route  POST /auth/login
  *  @access Public
  */
 exports.login = async (req, res, next) => {
