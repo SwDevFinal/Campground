@@ -20,6 +20,7 @@ dotenv.config({
 connectDB();
 
 //Route files
+const auth = require("./routes/auth");
 
 const app = express();
 
@@ -52,6 +53,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Use routes
+app.use("/auth", auth);
 
 const swaggerOptions = {
   swaggerDefinition: {
