@@ -21,6 +21,7 @@ connectDB();
 
 //Route files
 const campgrounds = require("./routes/campgrounds");
+const auth = require("./routes/auth");
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use(limiter);
 
 // Use routes
 app.use("/api/v1/campgrounds", campgrounds);
+app.use("/auth", auth);
 
 const swaggerOptions = {
   swaggerDefinition: {
