@@ -22,6 +22,7 @@ connectDB();
 //Route files
 const campgrounds = require("./routes/campgrounds");
 const auth = require("./routes/auth");
+const bookings = require("./routes/bookings");
 
 const app = express();
 
@@ -54,8 +55,9 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Use routes
-app.use("/api/v1/campgrounds", campgrounds);
+app.use("/campgrounds", campgrounds);
 app.use("/auth", auth);
+app.use("/bookings", bookings);
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -67,7 +69,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:5000/api/v1",
+        url: "http://localhost:5000",
       },
     ],
   },

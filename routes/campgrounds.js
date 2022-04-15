@@ -6,8 +6,11 @@ const {
   updateCampground,
   deleteCampground,
 } = require("../controllers/campgrounds");
+const bookingRouter = require("./bookings");
 const router = express.Router();
 const { protect, authorize } = require("../middleware/auth");
+
+router.use("/:campgroundId/bookings", bookingRouter);
 
 router
   .route("/")

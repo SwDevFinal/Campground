@@ -1,7 +1,7 @@
 const Campground = require("../models/Campground");
 
 //@desc     Get campground list
-//@route    GET /api/v1/campgrounds
+//@route    GET /campgrounds
 //@access   Public
 exports.getCampgrounds = async (req, res, next) => {
   try {
@@ -17,7 +17,8 @@ exports.getCampgrounds = async (req, res, next) => {
       (match) => `$${match}`
     );
 
-    query = Campground.find(JSON.parse(queryStr)).populate("appointments");
+    // query = Campground.find(JSON.parse(queryStr)).populate("appointments");
+    query = Campground.find(JSON.parse(queryStr));
 
     // Select
     if (req.query.select) {
@@ -74,7 +75,7 @@ exports.getCampgrounds = async (req, res, next) => {
 };
 
 //@desc     Get a campground
-//@route    GET /api/v1/campgrounds/{camgroundId}
+//@route    GET /campgrounds/{camgroundId}
 //@access   Public
 exports.getCampground = async (req, res, next) => {
   try {
@@ -92,7 +93,7 @@ exports.getCampground = async (req, res, next) => {
 };
 
 //@desc     Create a campground
-//@route    POST /api/v1/campgrounds
+//@route    POST /campgrounds
 //@access   Private
 exports.createCampground = async (req, res, next) => {
   const campground = await Campground.create(req.body);
@@ -103,7 +104,7 @@ exports.createCampground = async (req, res, next) => {
 };
 
 //@desc     Update a campground
-//@route    PUT /api/v1/campgrounds/{campgroundId}
+//@route    PUT /campgrounds/{campgroundId}
 //@access   Private
 exports.updateCampground = async (req, res, next) => {
   try {
@@ -129,7 +130,7 @@ exports.updateCampground = async (req, res, next) => {
 };
 
 //@desc     Delete a campground
-//@route    DELETE /api/v1/campgrounds/{campgroundId}
+//@route    DELETE /campgrounds/{campgroundId}
 //@access   Private
 exports.deleteCampground = async (req, res, next) => {
   try {
