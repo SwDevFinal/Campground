@@ -152,36 +152,3 @@ exports.updateBooking = async (req, res, next) => {
       .json({ success: false, message: "Cannot update booking" });
   }
 };
-
-//@desc     Delete booking
-//@route    DELETE /bookings/:id
-//@access   Private
-exports.deleteBooking = async (req, res, next) => {
-  try {
-    const booking = await Booking.findById(req.params.id);
-
-    if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: `No booking with the id of ${req.params.id}`,
-      });
-    }
-
-    // Make sure user is the booking owner
-    if (booking.user.toString() !== req.user.id && req.user.role !== "admin") {
-      return res.status(401).json({
-        success: false,
-        message: `User ${req.user.id} is not authorized to delete this booking`,
-      });
-    }
-
-    await booking.remove();
-
-    res.status(200).json({ success: true, data: {} });
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(500)
-      .json({ success: false, message: "Cannot delete booking" });
-  }
-};
