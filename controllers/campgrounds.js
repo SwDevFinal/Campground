@@ -64,7 +64,7 @@ exports.getCampgrounds = async (req, res, next) => {
     }
 
     res.status(200).json({
-      sucess: true,
+      success: true,
       count: campgrounds.length,
       pagination,
       data: campgrounds,
@@ -84,7 +84,7 @@ exports.getCampground = async (req, res, next) => {
       return res.status(400).json({ success: false });
     }
     res.status(200).json({
-      sucess: true,
+      success: true,
       data: campground,
     });
   } catch (err) {
