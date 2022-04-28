@@ -50,6 +50,13 @@ exports.getBooking = async (req, res, next) => {
       });
     }
 
+    if (booking.user.toString() !== req.user.id && req.user.role !== "admin") {
+      return res.status(403).json({
+        succes: false,
+        message: `You are not the owner of booking with the id of ${req.params.id}`,
+      });
+    }
+
     res.status(200).json({ success: true, data: booking });
   } catch (error) {
     console.log(error);
